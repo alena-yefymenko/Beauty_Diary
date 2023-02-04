@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Categories</title>
+</head>
+<body>
+<h1>
+    Beauty Services
+</h1>
+<ul>
+    <li th:each="category: ${categories}">
+        <a th:href="@{beauticians/{categoryId}(categoryId=${category.id})}">
+            <th:block th:text="${category.name}"></th:block>
+        </a>
+    </li>
+</ul>
+
+
+</body>
+</html>
