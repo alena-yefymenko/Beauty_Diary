@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div th:each="beautician: ${beauticians}">
+        <div>
+            <p th:text="${beautician.fullName}"></p>
+            <p th:text="${beautician.aboutMe}"></p>
+        </div>
+        <a th:href="@{/beauticians/{id}(id=${beautician.id})}">View</a>
+    </div>
+
+</div>
+</body>
+</html>
