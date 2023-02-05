@@ -14,7 +14,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(name = "beauticians")
 public class Beautician {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "full_name")
     private String fullName;
