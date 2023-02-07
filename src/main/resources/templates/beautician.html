@@ -29,34 +29,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form th:action="@{/reservation}" th:object="${reservation}" method="post">
                     <div class="mb-3">
                         <div>
                             <lable class="form-label">Full Name</lable>
-                            <input  class="form-control" type="text" >
+                            <input  class="form-control" type="text" th:field="*{name}" >
                         </div>
                         <div>
                             <lable class="form-label">Description</lable>
-                            <input  class="form-control" type="text" >
+                            <input  class="form-control" type="text" th:field="*{description}" >
                         </div>
                         <div>
                             <lable class="form-label">Phone Number</lable>
-                            <input class="form-control" type="text" >
+                            <input class="form-control" type="text" th:field="*{phoneNumber}">
                         </div>
                         <div>
                             <lable class="form-label">Date</lable>
-                            <input class="form-control" type="date" >
+                            <input class="form-control" type="date" th:field="*{date}" >
                         </div>
                         <div>
                             <lable class="form-label">Time</lable>
-                            <input class="form-control" type="time" >
+                            <input type="time" class="form-control" th:field="*{time}">
+                            <input hidden="hidden" th:field="*{beautician}"/>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary"/>
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>

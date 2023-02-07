@@ -1,6 +1,8 @@
 package com.example.beautydiary.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,20 +12,19 @@ import java.sql.Time;
 
 @Entity
 @Data
-@Table(name="service_reservation")
+@Table(name = "service_reservation")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="full_name")
+    @Column(name = "full_name")
     private String name;
     private String description;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
     private Date date;
-    private Time time;
+    private String time;
     private String phoneNumber;
+
     @OneToOne
     private Beautician beautician;
-
-
 }

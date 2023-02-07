@@ -16,20 +16,22 @@ public class Beautician {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "full_name")
     private String fullName;
-    @Column(unique = true)
+
     private String email;
-    @Column(name = "phone_number")
+
     private String phoneNumber;
-    private String location;
+    private String address;
+
     @ManyToOne
     private Category category;
+
     private String password;
     @Column(name = "profile_picture_URL")
     private String profilePictureURL;
     private String aboutMe;
-
     @CreationTimestamp
     private java.sql.Timestamp createdAt;
     @UpdateTimestamp
