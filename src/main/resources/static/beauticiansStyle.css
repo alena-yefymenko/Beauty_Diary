@@ -1,0 +1,19 @@
+.beauty-list{
+    margin-left: 100px;
+}
+.btn-view{
+    background-color: #4f52ff;
+    padding: 10px 40px;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: normal;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+.btn-view a{
+    text-decoration: none;
+    color: white;
+
+}

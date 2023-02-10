@@ -1,0 +1,16 @@
+
+.master{
+    margin-left: 100px;
+}
+#btn-modal {
+    margin-top: 15px;
+    margin-left: 100px;
+    background-color: #4f52ff;
+    padding: 10px 40px;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: normal;
+}
+#btn-modal:hover{background-color: #eb9938;}

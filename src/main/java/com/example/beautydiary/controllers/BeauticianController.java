@@ -20,11 +20,6 @@ public class BeauticianController {
         this.beauticianService = beauticianService;
     }
 
-    @GetMapping("/home")
-    public String showHomePage() {
-        return "home";
-    }
-
     @GetMapping("/categories/{categoryId}/beauticians")
     public String findAllByCategoryId(@PathVariable("categoryId") Long categoryId, Model model) {
         List<Beautician> beauticians = beauticianService.findAllByCategoryId(categoryId);

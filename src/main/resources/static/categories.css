@@ -1,0 +1,52 @@
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.profile1-img{
+    height: 300px;
+    width: 300px;
+    margin: 15px;
+}
+
+.profiles{
+    border:solid #dadce0 1px;
+    border-radius: 20px;
+    box-shadow: 12px 12px 22px #dadce0;
+    margin: 60px 20px 20px;
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    color:white;
+    border-radius:15px;
+    background-color: #4f52ff;
+    padding: 10px 40px;
+    font-size: 18px;
+    text-decoration: none;
+}
+.btn1:hover{
+    background: white;
+    border: 1px solid;
+    color: #712cf9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

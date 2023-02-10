@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <title>Reservation-result</title>
+
 </head>
 <body>
-<div><h3>You successfully signed up for a visit!</h3>
+<div>
+    <h3>You successfully signed up for a visit!</h3>
     <p th:text="'Beauty master name: ' + ${reservation.beautician.fullName}"></p>
     <p th:text="'Date of visit: ' + ${reservation.date}"></p>
     <p th:text="'Time of visit: ' + ${reservation.time}"></p>
+    <a th:href="@{/beauticians/{id}(id=${reservation.beautician.id})}">BACK TO MASTER</a>
 </div>
 </body>
 </html>
