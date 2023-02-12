@@ -1,6 +1,7 @@
 body {
     color: #5b5b5b;
-    font-family: 'Roboto', sans-serif;
+   font-family: 'Roboto', sans-serif;
+    /*font-family: "Roboto Light";*/
 }
 .container-fluid{
     margin-left: 100px;
@@ -31,12 +32,17 @@ a.nav-link.active:hover{
 }
 
 #home-img {
-    height: 600px;
-    width: 600px;
+    height: 620px;
+    width: 620px;
 }
 
 #main-title {
-    padding-top: 150px;
+    padding-top: 200px;
+
+}
+h3{
+    font-weight: bold;
+    font-size: 25px;
 }
 
 .main-content {
@@ -45,7 +51,7 @@ a.nav-link.active:hover{
 
 .btn-see-more {
     background-color: #4f52ff;
-    padding: 10px 40px;
+    padding: 10px 35px;
     text-decoration: none;
     border: none;
     color: white;

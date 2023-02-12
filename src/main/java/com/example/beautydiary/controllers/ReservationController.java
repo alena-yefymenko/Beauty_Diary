@@ -1,5 +1,6 @@
 package com.example.beautydiary.controllers;
 
+import com.example.beautydiary.entities.Beautician;
 import com.example.beautydiary.entities.Reservation;
 import com.example.beautydiary.services.ReservationService;
 import jakarta.servlet.http.HttpSession;
@@ -7,12 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class ReservationController {
     private ReservationService reservationService;
-
     public ReservationController(ReservationService reservationService) {
         this.reservationService = reservationService;
     }
@@ -36,4 +39,24 @@ public class ReservationController {
         }
 
     }
+
+    @GetMapping("/reservations-list")
+    public String showReservationListPage() {
+        return "reservations-list";
+    }
+
+    @GetMapping("/reservations-list/{beauticianId}")
+    public String getAll(@PathVariable("beauticianId") Long beauticianId, Model model){
+        List<Reservation> reservations = reservationService.getAllByBeauticianId(beauticianId);
+        model.addAttribute("reservations", reservations);
+        return "reservations-list";
+    }
+
+    @GetMapping("/beautician/{beauticianId}/deleteReservation/{id}")
+    public String deleteReservationsById(@PathVariable("id") Long id, @PathVariable("beauticianId") Long beauticianId){
+       reservationService.deleteById(id);
+       return "redirect:/reservations-list/"+ beauticianId;
+    }
+
+
 }

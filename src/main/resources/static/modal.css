@@ -6,11 +6,14 @@
     margin-top: 15px;
     margin-left: 100px;
     background-color: #4f52ff;
-    padding: 10px 40px;
+    padding: 10px 35px;
     text-decoration: none;
     border: none;
     color: white;
     font-size: 18px;
     font-weight: normal;
 }
-#btn-modal:hover{background-color: #eb9938;}
+#btn-modal:hover{ background: white;
+    border: 1px solid;
+    color: #712cf9;
+}

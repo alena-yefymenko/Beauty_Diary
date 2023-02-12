@@ -1,0 +1,26 @@
+.btn{
+    background-color: #4f52ff;
+    padding: 10px 35px;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: normal;
+    border-radius: 15px;
+    margin-top: 15px;
+    display: inline-block;
+}
+.btn:hover{
+    background: white;
+    border: 1px solid;
+    color: #712cf9;
+
+}
+.col-4{
+    margin-top: 50px;
+}
+.col-8{
+    margin-top: 50px;
+    border: solid 1px #ebebeb;
+    padding: 20px;
+}

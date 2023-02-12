@@ -1,0 +1,34 @@
+.box{
+    width: 500px;
+    height: 600px;
+}
+h4{
+    text-align: center;
+    font-family: "Roboto Light";
+    font-weight: bold;
+}
+p{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+   font-family: "Roboto Light";
+}
+
+a.btn{
+    border: none;
+    outline: none;
+    color:white;
+    border-radius:15px;
+    background-color: #4f52ff;
+    padding: 10px 35px;
+    font-size: 18px;
+    text-decoration: none;
+    margin-top: 15px;
+
+}
+a.btn:hover{
+    background: white;
+    border: 1px solid;
+    color: #712cf9;
+}
