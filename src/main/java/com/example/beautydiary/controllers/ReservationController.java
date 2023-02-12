@@ -1,6 +1,4 @@
 package com.example.beautydiary.controllers;
-
-import com.example.beautydiary.entities.Beautician;
 import com.example.beautydiary.entities.Reservation;
 import com.example.beautydiary.services.ReservationService;
 import jakarta.servlet.http.HttpSession;
@@ -45,6 +43,7 @@ public class ReservationController {
         return "reservations-list";
     }
 
+    //beauticians/id/reservations
     @GetMapping("/reservations-list/{beauticianId}")
     public String getAll(@PathVariable("beauticianId") Long beauticianId, Model model){
         List<Reservation> reservations = reservationService.getAllByBeauticianId(beauticianId);

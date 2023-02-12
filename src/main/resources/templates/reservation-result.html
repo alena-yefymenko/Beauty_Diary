@@ -25,7 +25,7 @@
         <p th:text="'Date of visit: ' + ${reservation.date}"></p>
         <p th:text="'Time of visit: ' + ${reservation.time}"></p>
        <div class="d-grid gap-2 col-4 mx-auto">
-           <a type="submit" class="btn" th:href="@{/beauticians/{id}(id=${reservation.beautician.id})}">Go back</a>
+           <a type="submit" class="btn" th:href="@{/beauticians/{id}(id=${reservation.beautician.id})}">Return</a>
        </div>
     </div>
 </div>

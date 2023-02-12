@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -36,5 +38,4 @@ public class Beautician {
     private java.sql.Timestamp createdAt;
     @UpdateTimestamp
     private java.sql.Timestamp updatedAt;
-
 }

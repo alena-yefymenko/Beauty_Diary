@@ -3,9 +3,11 @@ package com.example.beautydiary.controllers;
 import com.example.beautydiary.entities.Beautician;
 import com.example.beautydiary.entities.Category;
 import com.example.beautydiary.entities.PriceListItem;
+
 import com.example.beautydiary.services.BeauticianService;
 import com.example.beautydiary.services.CategoryService;
 import com.example.beautydiary.services.MasterAccountService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,18 +41,22 @@ public class MasterAccountController {
         return "/create-master-account";
     }
 
-    @GetMapping("/master-account")
-    public String showMasterAccountPage(Model model) {
-        List<PriceListItem> itemList = mas.getAll();
+   @GetMapping("/master-account/{beauticianId}")
+    public String showMasterAccountPage(@PathVariable("beauticianId") Long beauticianId, Model model) {
+        Beautician beautician = beauticianService.getById(beauticianId);
+        List<PriceListItem> itemList = mas.getAllByBeauticianId(beauticianId);
+        PriceListItem item = new PriceListItem();
+        item.setBeautician(beautician);
         model.addAttribute("itemList", itemList);
-        model.addAttribute("priceListItem", new PriceListItem());
+        model.addAttribute("item", item);
         return "/master-account";
     }
-    @PostMapping("/master-account")
-    public String addPriceListItem(@ModelAttribute("priceListItem") PriceListItem priceListItem) {
-        mas.addPriceListItem(priceListItem);
-        return "redirect:master-account";
-    }
 
+    @PostMapping("/master-account/{beauticianId}")
+    public String addPriceListItem(@ModelAttribute("priceListItem") PriceListItem priceListItem,
+    @PathVariable("beauticianId") Long beauticianId) {
+        mas.addPriceListItem(priceListItem);
+        return "redirect:/master-account/" + beauticianId;
+    }
 }
 

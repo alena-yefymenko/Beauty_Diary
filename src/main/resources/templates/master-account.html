@@ -78,19 +78,21 @@
                     </button>
                 </li>
             </ul>
+
+
          <!--   Content-->
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                      tabindex="0">
                     About me, Skills...
                     <div>
-                        <a type="submit" class="btn" href="#">All My Reservations</a>
+                        <a type="submit" class="btn" th:href="@{/reservations-list/{beauticianId}(beauticianId=${item.beautician.id})}">All My Reservations</a>
                     </div>
                 </div>
            <!--     Price list-->
                 <div class="tab-pane fade show active" id="price-list-tab-pane" data-toggle="tab" role="tabpanel" aria-labelledby="price-list-tab"
                      tabindex="0">
-                    <form th:action="@{/master-account}" th:object="${priceListItem}" method="post"
+                    <form th:action="@{/master-account/{beauticianId}(beauticianId=${item.beautician.id})}" th:object="${item}" method="post"
                           class="row g-3 align-items-center">
                         <h5>Price List</h5>
                         <div class="col-4">
@@ -104,6 +106,7 @@
                             <div class="input-group">
                                 <input th:field="*{price}" name="price" type="input" class="form-control" placeholder="Price">
                             </div>
+                            <input hidden="hidden" th:field="*{beautician}"/>
                         </div>
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary">Add new</button>
