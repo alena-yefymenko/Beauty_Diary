@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -34,8 +32,21 @@ public class Beautician {
     @Column(name = "profile_picture_URL")
     private String profilePictureURL;
     private String aboutMe;
+    private String skills;
     @CreationTimestamp
     private java.sql.Timestamp createdAt;
     @UpdateTimestamp
     private java.sql.Timestamp updatedAt;
+
+
+    public String getShortAboutMe() {
+        int maxLength = 100;
+        if (aboutMe.length() <= maxLength) {
+            return aboutMe;
+        } else {
+            return aboutMe.substring(0, maxLength) + "...";
+        }
+    }
 }
+
+

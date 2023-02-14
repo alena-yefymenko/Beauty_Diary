@@ -3,7 +3,7 @@
     paddind: 0;
     box-sizing: border-box;
     color: #5b5b5b;
-   /* font-family: "Roboto Light";*/
+    /* font-family: "Roboto Light";*/
     font-family: 'Roboto', sans-serif;
 }
 
@@ -17,12 +17,12 @@
 .slide-content {
     display: inline-flex;
     margin-top: 100px;
-    margin-left: 35px;
-    margin-right: 35px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .card {
-    width: 275px;
+    width: 350px;
     border-radius: 25px;
     box-shadow: 10px 10px 20px #dadce0;
 }
@@ -33,7 +33,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 18px;
+    padding: 15px 30px;
+    height: 250px;
 }
 
 .img-content {
@@ -53,7 +54,7 @@
 }
 
 .overlay::before,
-.overlay::after{
+.overlay::after {
     content: '';
     position: absolute;
     right: 0;
@@ -62,15 +63,16 @@
     width: 40px;
     background-color: #6d6efc;
 }
-.overlay::after{
+
+.overlay::after {
     border-radius: 0 25px 0 0;
     background-color: white;
 }
 
 .card-image {
     position: relative;
-    height: 165px;
-    width: 165px;
+    height: 180px;
+    width: 180px;
     border-radius: 50%;
     background-color: white;
 }
@@ -84,13 +86,9 @@
 }
 
 .name {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.description {
-    font-size: 16px;
-    text-align: center;
+    font-size: 23px;
+    font-weight: normal;
+    color: #2d2d2d;
 }
 
 .beauty-list {
@@ -106,11 +104,14 @@
     font-size: 18px;
     font-weight: normal;
     border-radius: 15px;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .btn-view a {
     text-decoration: none;
     color: white;
 }
+
+
+

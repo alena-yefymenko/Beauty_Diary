@@ -42,20 +42,29 @@ public class MasterAccountController {
     }
 
    @GetMapping("/master-account/{beauticianId}")
-    public String showMasterAccountPage(@PathVariable("beauticianId") Long beauticianId, Model model) {
+    public String viewMasterAccountPage(@PathVariable("beauticianId") Long beauticianId, Model model) {
         Beautician beautician = beauticianService.getById(beauticianId);
         List<PriceListItem> itemList = mas.getAllByBeauticianId(beauticianId);
         PriceListItem item = new PriceListItem();
         item.setBeautician(beautician);
         model.addAttribute("itemList", itemList);
         model.addAttribute("item", item);
+        model.addAttribute("name",beautician.getFullName());
+        model.addAttribute("be", beautician);
         return "/master-account";
     }
 
-    @PostMapping("/master-account/{beauticianId}")
+    @PostMapping("/master-account/{beauticianId}/addPriceList")
     public String addPriceListItem(@ModelAttribute("priceListItem") PriceListItem priceListItem,
-    @PathVariable("beauticianId") Long beauticianId) {
+    @PathVariable("beauticianId") Long beauticianId){
         mas.addPriceListItem(priceListItem);
+        return "redirect:/master-account/" + beauticianId;
+    }
+    @PostMapping("/master-account/{beauticianId}/updateProfile")
+    public String updateProfile(@ModelAttribute("beautician") Beautician beautician,
+                                   @PathVariable("beauticianId") Long beauticianId){
+        beautician.setId(beauticianId);
+        beauticianService.saveBeautician(beautician);
         return "redirect:/master-account/" + beauticianId;
     }
 }

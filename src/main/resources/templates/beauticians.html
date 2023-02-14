@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<header th:insert="~{fragments/header.html :: header}"></header>
+<header th:insert="~{fragments/navbar.html :: nav}"></header>
 
 <div class="container">
     <div th:each="beautician: ${beauticians}" class="slide-content">
@@ -31,11 +31,11 @@
             </div>
             <div class="card-content">
                 <p th:text="${beautician.fullName}" class="name"></p>
-                <p p th:text="${beautician.aboutMe}" class="description"></p>
+                <p  th:text="${beautician.getShortAboutMe()}">
+                </p>
                 <button class="btn-view">
                     <a th:href="@{/beauticians/{id}(id=${beautician.id})}">See more</a>
                 </button>
-            </div>
         </div>
     </div>
 </div>

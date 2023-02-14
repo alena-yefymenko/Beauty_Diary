@@ -1,4 +1,14 @@
-.btn{
+body{
+    color: #5b5b5b;
+    font-family: 'Roboto', sans-serif;
+
+}
+h3{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: lighter;
+}
+.btn {
     background-color: #4f52ff;
     padding: 7px 30px;
     text-decoration: none;
@@ -10,17 +20,37 @@
     margin-top: 15px;
     display: inline-block;
 }
-.btn:hover{
+
+.btn:hover {
     background: white;
     border: 1px solid;
     color: #712cf9;
 
 }
-.col-4{
+
+.col-4 {
     margin-top: 50px;
 }
-.col-8{
+
+.col-8 {
     margin-top: 50px;
     border: solid 1px #ebebeb;
     padding: 20px;
+}
+
+img{
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+   color: #eb9938;}
+.nav-link{
+    color: #4f52ff;
+
+}
+.tab-content>.active {
+    margin-top: 20px;
 }

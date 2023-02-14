@@ -23,4 +23,5 @@ public class MasterAccountService {
     public List<PriceListItem> getAllByBeauticianId(Long id) {
         return masterAccountRepository.findAllByBeauticianId(id);
     }
+
 }

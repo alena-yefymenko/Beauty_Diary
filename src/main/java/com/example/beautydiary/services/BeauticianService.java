@@ -21,4 +21,8 @@ public class BeauticianService {
     public Beautician getById(Long id){
         return beauticianRepository.getReferenceById(id);
     }
+
+   public Beautician saveBeautician(Beautician beautician){
+        return beauticianRepository.save(beautician);
+   }
 }
