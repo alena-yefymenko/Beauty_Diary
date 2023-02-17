@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Log in</title>
+    <title>Sign In</title>
 </head>
 <body>
-
+<main>
+    <h1>Sign In</h1>
+    <div>
+        <form action="/login" method="post">
+            <div>
+                <label>Enter your E-mail address</label>
+                <input type="email" name="email" required>
+            </div>
+            <div>
+                <label>Enter your Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <div>
+                <button>Sign In</button>
+            </div>
+            <div>
+                <p>
+                    <span th:if="${message == 'signup_success'}">
+                        Welcome to the Beautiful World!</span>
+                    <span th:if="${message == 'login_failed'}">
+                        Unless, you enter your e-mail or password wrong:( Let`s try again!
+                    </span>
+                </p>
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>

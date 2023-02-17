@@ -1,15 +1,15 @@
-body{
+body {
     color: #5b5b5b;
     font-family: 'Roboto', sans-serif;
-
 }
+
 h3{
     margin-top: 20px;
     margin-bottom: 20px;
     font-weight: lighter;
 }
 .btn {
-    background-color: #4f52ff;
+    background-color: #6d6efc;
     padding: 7px 30px;
     text-decoration: none;
     border: none;
@@ -21,24 +21,39 @@ h3{
     display: inline-block;
 }
 
-.btn:hover {
+.btn:hover,#btn-file:hover {
     background: white;
     border: 1px solid;
     color: #712cf9;
 
 }
+#btn-file{
+    background-color: #6d6efc;
+    padding: 7px 30px;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
 
 .col-4 {
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
 .col-8 {
-    margin-top: 50px;
+    margin-top: 70px;
     border: solid 1px #ebebeb;
     padding: 20px;
+    background-color: white;
+    box-shadow: 12px 12px 22px #dadce0;
+    border-radius: 15px;
+
 }
 
-img{
+#avatar{
     text-align: center;
     width: 200px;
     height: 200px;

@@ -11,4 +11,5 @@ import java.util.List;
 public interface BeauticianRepository extends JpaRepository<Beautician,Long> {
 
     List<Beautician> findAllByCategoryId(Long id);
+   Beautician findByEmailAndPassword(String email, String password);
 }

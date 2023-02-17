@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+
+<form action="/register" th:action="@{/register}" method="post">
+
+    <div>
+        <label>Full Name</label>
+        <input type="text" name="fullName" title="Enter your Name and Surname"  th:value="${user?.getFullName()}">
+    </div>
+    <div>
+        <label>E-mail</label>
+        <input type="email" name="email"  pattern="^\S+@\S+\.\S+$" title="example@mail.com" th:value="${user?.getEmail()}" >
+    </div>
+    <div>
+        <label>Phone number</label>
+        <input type="text" name="phoneNumber"   title="Enter your phone number, example=26000000" th:value="${user?.getPhoneNumber()}">
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" name="password"   title="Enter your password" th:value="${user?.getPassword()}">
+    </div>
+    <div  class="form-check">
+        <input class="form-check-input" type="radio" name="userType" id="Customer" value="customer">
+        <label class="form-check-label" for="Customer">
+            Customer
+        </label>
+    </div>
+    <div class="form-check">
+        <input  class="form-check-input" type="radio" name="userType" id="Beautician" value="beautician" checked>
+        <label class="form-check-label" for="Beautician">
+            Beautician
+        </label>
+        <div>
+            <button>Create account</button>
+        </div>
+        <div>
+            <p th:if="${message}">
+           <span th:if="${ message == 'signup_failed'}">
+               <label th:if="${error}" th:text="${(error)}"></label>
+           </span>
+            </p>
+        </div>
+
+    </div>
+</form>
+</body>
+</html>

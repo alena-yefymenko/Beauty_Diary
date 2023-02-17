@@ -8,21 +8,24 @@
 <header th:insert="~{fragments/navbar.html :: nav}"></header>
 <div class="container">
     <div class="row">
-       <!-- Profile photo,reservation list-->
+        <!-- Profile photo,reservation list-->
         <div class="col-4">
-            <div >
-                <img src="/img/hairdresser.jpg" class="mx-auto d-block" alt="...">
+            <div>
+                <img id="avatar" src="/img/hairdresser.jpg" class="mx-auto d-block" alt="...">
             </div>
             <div class="text-center">
-                <h3 th:text="${name}"></h3>
+                <h3 th:text="${be.fullName}"></h3>
             </div>
             <div>
-                <a type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto" th:href="@{/reservations-list/{beauticianId}(beauticianId=${item.beautician.id})}"> My Reservations</a>
+                <a type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto"
+                   th:href="@{/reservations-list/{beauticianId}(beauticianId=${item.beautician.id})}"> My
+                    Reservations</a>
             </div>
             <!-- Edit profile section-->
             <div>
                 <p>
-                    <a class="btn btn-primary d-grid gap-2 col-6 mx-auto" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                    <a class="btn btn-primary d-grid gap-2 col-6 mx-auto" data-bs-toggle="collapse"
+                       href="#collapseExample" role="button"
                        aria-expanded="false" aria-controls="collapseExample">
                         Edit profile
                     </a>
@@ -31,31 +34,42 @@
 
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
-                   <form th:action="@{/master-account/{beauticianId}/updateProfile(beauticianId=${be.id})}" th:object="${be}" method="post">
-                       <div>
-                           <label>Email</label>
-                           <input th:field="*{email}"  type="text" name="email" class="form-control" placeholder="email">
-                       </div>
+                    <form th:action="@{/master-account/{beauticianId}/updateProfile(beauticianId=${be.id})}"
+                          th:object="${be}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <input th:field="*{address}" type="text" name="address" class="form-control"
+                                   placeholder="address">
+                        </div>
 
-                       <div>
-                           <label>Address</label>
-                           <input th:field="*{address}" type="text" name="address" class="form-control" placeholder="address">
-                       </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone number</label>
+                            <input th:field="*{phoneNumber}" type="text" name="phoneNumber" class="form-control"
+                                   placeholder="phone number">
+                        </div>
 
-                       <div>
-                           <label >Phone number</label>
-                           <input  th:field="*{phoneNumber}" type="text" name="phoneNumber" class="form-control" placeholder="phone number">
-                       </div>
-
-                       <div class="mb-3">
-                           <label >About me</label>
-                           <textarea th:field="*{aboutMe}" class="form-control" rows="3" placeholder="About me"></textarea>
-                       </div>
-                       <!--<input hidden="hidden" th:field="*{id}"/>-->
-                       <div>
-                           <button type="submit" class="btn btn-success">Update Profile</button>
-                       </div>
-                   </form>
+                        <div class="mb-3">
+                            <label class="form-label">About me</label>
+                            <textarea th:field="*{aboutMe}" class="form-control" rows="3"
+                                      placeholder="About me"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Choose Service Category</label>
+                            <select class="form-select" aria-label="Default select example" th:field="*{category.id}" >
+                                <option th:each="category: ${categories}" th:value="${category.id}">
+                                    <th:block th:text="${category.name}"/>
+                                </option>
+                            </select>
+                        </div>
+                        <input hidden="hidden" th:field="*{id}"/>
+                        <input hidden="hidden" th:field="*{email}"/>
+                        <input hidden="hidden" th:field="*{fullName}"/>
+                        <input hidden="hidden" th:field="*{password}"/>
+                        <input hidden="hidden" th:field="*{createdAt}"/>
+                        <div>
+                            <button class="btn btn-primary d-grid gap-2 col-6 mx-auto">Submit</button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
@@ -66,12 +80,15 @@
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="home-tab" data-bs-toggle="tab"
-                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"> Profile
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane">
+                        Profile
                     </button>
                 </li>
-                <li class="nav-item" role="presentation" >
-                    <button class="nav-link" id="price-list-tab" data-bs-toggle="tab" data-bs-target="#price-list-tab-pane"
-                            type="button" role="tab" aria-controls="price-list-tab-pane" aria-selected="false">Price List
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="price-list-tab" data-bs-toggle="tab"
+                            data-bs-target="#price-list-tab-pane"
+                            type="button" role="tab" aria-controls="price-list-tab-pane" aria-selected="false">Price
+                        List
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -81,8 +98,8 @@
                 </li>
             </ul>
 
-         <!--   Content-->
-            <div class="tab-content" id="myTabContent">
+            <!--   Content-->
+            <div class="tab-content fade show active" id="myTabContent">
                 <div class="tab-pane fade" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                      tabindex="0">
                     <div>
@@ -104,21 +121,25 @@
 
                 </div>
 
-           <!--     Price list-->
-                <div class="tab-pane fade show active" id="price-list-tab-pane" data-toggle="tab" role="tabpanel" aria-labelledby="price-list-tab"
+                <!--     Price list-->
+                <div class="tab-pane" id="price-list-tab-pane" data-toggle="tab" role="tabpanel"
+                     aria-labelledby="price-list-tab"
                      tabindex="0">
-                    <form th:action="@{/master-account/{beauticianId}/addPriceList(beauticianId=${item.beautician.id})}" th:object="${item}" method="post"
+                    <form th:action="@{/master-account/{beauticianId}/addPriceList(beauticianId=${item.beautician.id})}"
+                          th:object="${item}" method="post"
                           class="row g-3 align-items-center">
                         <div class="col-4">
                             <label class="visually-hidden">Name</label>
                             <div class="input-group">
-                                <input th:field="*{name}" name="name" type="input" class="form-control" placeholder="Name">
+                                <input th:field="*{name}" name="name" type="input" class="form-control"
+                                       placeholder="Name">
                             </div>
                         </div>
                         <div class="col-4">
                             <label class="visually-hidden">Price</label>
                             <div class="input-group">
-                                <input th:field="*{price}" name="price" type="input" class="form-control" placeholder="Price">
+                                <input th:field="*{price}" name="price" type="input" class="form-control"
+                                       placeholder="Price">
                             </div>
                             <input hidden="hidden" th:field="*{beautician}"/>
                         </div>
@@ -143,10 +164,51 @@
                         </tbody>
                     </table>
                 </div>
-              <!--  Portfolio-->
-                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                <!--  Portfolio-->
+                <div class="tab-pane" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                      tabindex="0">
-                    Display Images
+                    <!--     Upload form-->
+
+                    <form>
+                        enctype="multipart/form-data" action="/#" class="row g-3 align-items-center">
+                        <input type="file" id="myFile" name="filename" class="form-control">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button id="btn-file" class="btn me-md-2">Add new photo</button>
+                        </div>
+                    </form>
+
+                    <!--       Carousel-->
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/img/home_hair_salon_gallery_1.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/img/home_hair_salon_gallery_2.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/img/home_hair_salon_gallery_3.jpg" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -159,7 +221,8 @@
         var tab = new bootstrap.Tab(triggerEl);
         tab.show();
     }
-    document.addEventListener("DOMContentLoaded", function() {
+
+    document.addEventListener("DOMContentLoaded", function () {
         activatePriceListab();
     });
 </script>
