@@ -1,8 +1,6 @@
 package com.example.beautydiary.controllers;
 
-import com.example.beautydiary.entities.Beautician;
 import com.example.beautydiary.services.BeauticianService;
-import com.example.beautydiary.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

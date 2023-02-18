@@ -17,7 +17,7 @@
                 <h3 th:text="${be.fullName}"></h3>
             </div>
             <div>
-                <a type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto"
+                <a id="list" type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto"
                    th:href="@{/reservations-list/{beauticianId}(beauticianId=${item.beautician.id})}"> My
                     Reservations</a>
             </div>
@@ -38,24 +38,21 @@
                           th:object="${be}" method="post">
                         <div class="mb-3">
                             <label class="form-label">Address</label>
-                            <input th:field="*{address}" type="text" name="address" class="form-control"
-                                   placeholder="address">
+                            <input th:field="*{address}" type="text" name="address" class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Phone number</label>
-                            <input th:field="*{phoneNumber}" type="text" name="phoneNumber" class="form-control"
-                                   placeholder="phone number">
+                            <input th:field="*{phoneNumber}" type="text" name="phoneNumber" class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">About me</label>
-                            <textarea th:field="*{aboutMe}" class="form-control" rows="3"
-                                      placeholder="About me"></textarea>
+                            <textarea th:field="*{aboutMe}" class="form-control" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Choose Service Category</label>
-                            <select class="form-select" aria-label="Default select example" th:field="*{category.id}" >
+                            <select class="form-select" aria-label="Default select example" th:field="*{category.id}">
                                 <option th:each="category: ${categories}" th:value="${category.id}">
                                     <th:block th:text="${category.name}"/>
                                 </option>
@@ -170,44 +167,18 @@
                     <!--     Upload form-->
 
                     <form>
-                        enctype="multipart/form-data" action="/#" class="row g-3 align-items-center">
-                        <input type="file" id="myFile" name="filename" class="form-control">
+                        <div class="row g-3 align-items-center">
+                            <input type="file" id="myFile" name="filename" class="form-control">
+                        </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button id="btn-file" class="btn me-md-2">Add new photo</button>
                         </div>
                     </form>
-
-                    <!--       Carousel-->
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                    class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/img/home_hair_salon_gallery_1.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/img/home_hair_salon_gallery_2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/img/home_hair_salon_gallery_3.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+                    <div class="col">
+                        <img src="/img/home_hair_salon_gallery_1.jpg" height="300px" width="400px" class="rounded float-start" alt="...">
+                        <img src="/img/home_hair_salon_gallery_2.jpg" height="300px" width="400px" class="rounded float-start" alt="...">
+                        <img src="/img/home_hair_salon_gallery_3.jpg" height="300px" width="400px" class="rounded float-start" alt="...">
+                        <img src="/img/home_hair_salon_gallery_3.jpg" height="300px" width="400px" class="rounded float-start" alt="...">
                     </div>
                 </div>
             </div>

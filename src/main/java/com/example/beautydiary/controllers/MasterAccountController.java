@@ -32,7 +32,11 @@ public class MasterAccountController {
     }
 
     @GetMapping("/master-account/{beauticianId}")
-    public String viewMasterAccountPage(@PathVariable("beauticianId") Long beauticianId, Model model) {
+    public String viewMasterAccountPage(@PathVariable("beauticianId") Long beauticianId, Model model,
+                                        @CookieValue(value = "userId") String userIdFromCookie) {
+        if(userIdFromCookie == null || !(userIdFromCookie.equals(beauticianId.toString()))){
+            return "redirect:/home";
+        }
         Beautician beautician = beauticianService.getById(beauticianId);
         List<PriceListItem> itemList = mas.getAllByBeauticianId(beauticianId);
         PriceListItem item = new PriceListItem();
@@ -58,7 +62,6 @@ public class MasterAccountController {
     @PostMapping("/master-account/{beauticianId}/updateProfile")
     public String updateProfile(@ModelAttribute("beautician") Beautician beautician,
                                 @PathVariable("beauticianId") Long beauticianId) throws Exception {
-
         try {
             beautician.setId(beauticianId);
             userService.updateBeautician(beautician);
@@ -67,7 +70,6 @@ public class MasterAccountController {
         }
         return "redirect:/master-account/" + beauticianId;
     }
-
 
 }
 

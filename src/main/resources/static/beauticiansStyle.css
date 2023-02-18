@@ -5,6 +5,7 @@
     color: #5b5b5b;
     /* font-family: "Roboto Light";*/
     font-family: 'Roboto', sans-serif;
+
 }
 
 /*.slide-container{
@@ -103,7 +104,7 @@
     color: white;
     font-size: 18px;
     font-weight: normal;
-    border-radius: 15px;
+    border-radius: 18px;
     margin-top: 25px;
     margin-bottom: 25px;
 }

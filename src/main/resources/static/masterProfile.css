@@ -16,7 +16,7 @@ h3{
     color: white;
     font-size: 18px;
     font-weight: normal;
-    border-radius: 15px;
+    border-radius: 18px;
     margin-top: 15px;
     display: inline-block;
 }
@@ -41,6 +41,15 @@ h3{
 
 .col-4 {
     margin-top: 70px;
+    margin-bottom: 70px;
+}
+.card{
+    background-color: white;
+    box-shadow: 12px 12px 22px #dadce0;
+    border-radius: 15px;
+    border: solid 1px #ebebeb;
+    color: #b7b7b7 ;
+    font-family: "Roboto Light";
 }
 
 .col-8 {
@@ -50,7 +59,7 @@ h3{
     background-color: white;
     box-shadow: 12px 12px 22px #dadce0;
     border-radius: 15px;
-
+    margin-bottom: 70px;
 }
 
 #avatar{
@@ -58,6 +67,7 @@ h3{
     width: 200px;
     height: 200px;
     border-radius: 50%;
+
 
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
@@ -68,4 +78,22 @@ h3{
 }
 .tab-content>.active {
     margin-top: 20px;
+}
+#list{
+    background-color: #eb9938;
+}
+#list:hover{
+    background: white;
+    border: 1px solid;
+    color: #eb9938;
+
+}
+img{
+    margin-left:15px;
+    margin-top: 15px;
+}
+::placeholder {
+    color: #ababab !important;
+    font-family: "Roboto Light";
+    font-size: 14px;
 }

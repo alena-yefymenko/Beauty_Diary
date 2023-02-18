@@ -2,7 +2,7 @@ body {
     color: #5b5b5b;
    font-family: 'Roboto', sans-serif;
     /*font-family: "Roboto Light";*/
-    background-color: #f6f6f6;
+    background-color: #fafafa;
 }
 .container-fluid{
     margin-left: 100px;
@@ -33,8 +33,8 @@ a.nav-link.active:hover{
 }
 
 #home-img {
-    height: 620px;
-    width: 620px;
+    height: 650px;
+    width: 650px;
 }
 
 #main-title {
@@ -58,7 +58,7 @@ h3{
     color: white;
     font-size: 18px;
     font-weight: normal;
-    border-radius: 15px;
+    border-radius: 18px;
     margin-top: 15px;
     display: inline-block;
 

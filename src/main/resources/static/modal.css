@@ -12,6 +12,7 @@
     color: white;
     font-size: 18px;
     font-weight: normal;
+    border-radius: 18px;
 }
 #btn-modal:hover{ background: white;
     border: 1px solid;
