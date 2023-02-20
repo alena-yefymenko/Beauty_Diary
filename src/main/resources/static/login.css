@@ -48,3 +48,9 @@ p{
     font-size: 14px;
 }
 
+span{
+    font-size: 16px;
+    text-align: center;
+    color: #e5259d;
+    display: inline-block;
+}
