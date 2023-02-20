@@ -35,7 +35,6 @@ public class ReservationController {
         } else {
             return "redirect:/home";
         }
-
     }
 
     @GetMapping("/reservations-list")

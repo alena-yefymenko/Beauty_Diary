@@ -48,7 +48,7 @@ h3{
     box-shadow: 12px 12px 22px #dadce0;
     border-radius: 15px;
     border: solid 1px #ebebeb;
-    color: #b7b7b7 ;
+    color: #606060 ;
     font-family: "Roboto Light";
 }
 
@@ -64,11 +64,10 @@ h3{
 
 #avatar{
     text-align: center;
-    width: 200px;
-    height: 200px;
+    width: 230px;
+    height: 230px;
     border-radius: 50%;
-
-
+    object-fit: cover;
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
    color: #eb9938;}
@@ -92,8 +91,7 @@ img{
     margin-left:15px;
     margin-top: 15px;
 }
-::placeholder {
-    color: #ababab !important;
+::placeholder,#capture,.form-control{
+    color: #606060 !important;
     font-family: "Roboto Light";
-    font-size: 14px;
 }

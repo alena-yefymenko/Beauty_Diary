@@ -11,10 +11,11 @@
         <!-- Profile photo,reservation list-->
         <div class="col-4">
             <div>
-                <img id="avatar" src="/img/hairdresser.jpg" class="mx-auto d-block" alt="...">
+                <img id="avatar" th:src="@{${'/profilePictures/' + beauticianId +'.jpg'}}" class="mx-auto d-block" alt="Upload photo...">
             </div>
             <div class="text-center">
                 <h3 th:text="${be.fullName}"></h3>
+                <p id="capture">Your personal account</p>
             </div>
             <div>
                 <a id="list" type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto"
@@ -165,13 +166,12 @@
                 <div class="tab-pane" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                      tabindex="0">
                     <!--     Upload form-->
-
-                    <form>
+                    <form method="post" enctype="multipart/form-data" th:action="@{/master-account/{beauticianId}/uploadImage(beauticianId=${beauticianId})}">
                         <div class="row g-3 align-items-center">
-                            <input type="file" id="myFile" name="filename" class="form-control">
+                            <input type="file" name="imageFile" accept="image/*" class="form-control">
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button id="btn-file" class="btn me-md-2">Add new photo</button>
+                            <button type="submit" class="btn me-md-2">Add new photo</button>
                         </div>
                     </form>
                     <div class="col">

@@ -7,11 +7,16 @@ import com.example.beautydiary.services.BeauticianService;
 import com.example.beautydiary.services.CategoryService;
 import com.example.beautydiary.services.MasterAccountService;
 import com.example.beautydiary.services.UserService;
+import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -21,6 +26,8 @@ public class MasterAccountController {
     private BeauticianService beauticianService;
     private UserService userService;
 
+    @Value("${profile.image.path}")
+    private String profileImagePath;
 
     @Autowired
     public MasterAccountController(MasterAccountService mas, CategoryService categoryService,
@@ -34,7 +41,7 @@ public class MasterAccountController {
     @GetMapping("/master-account/{beauticianId}")
     public String viewMasterAccountPage(@PathVariable("beauticianId") Long beauticianId, Model model,
                                         @CookieValue(value = "userId") String userIdFromCookie) {
-        if(userIdFromCookie == null || !(userIdFromCookie.equals(beauticianId.toString()))){
+        if (userIdFromCookie == null || !(userIdFromCookie.equals(beauticianId.toString()))) {
             return "redirect:/home";
         }
         Beautician beautician = beauticianService.getById(beauticianId);
@@ -70,6 +77,19 @@ public class MasterAccountController {
         }
         return "redirect:/master-account/" + beauticianId;
     }
+
+    @PostMapping("/master-account/{beauticianId}/uploadImage")
+    public String uploadImage(@PathVariable("beauticianId") Long beauticianId,
+                              @RequestParam("imageFile") MultipartFile imageFile) {
+        try {
+            String fileName = profileImagePath + beauticianId + ".jpg";
+            mas.saveImage(imageFile, fileName);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/master-account/" + beauticianId;
+    }
+
 
 }
 
