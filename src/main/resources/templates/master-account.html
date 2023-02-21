@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <head th:insert="~{fragments/links.html :: links}"></head>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="/masterProfile.css">
 </head>
 <body>
@@ -10,8 +11,34 @@
     <div class="row">
         <!-- Profile photo,reservation list-->
         <div class="col-4">
-            <div>
+            <div class="avatar">
                 <img id="avatar" th:src="@{${'/profilePictures/' + beauticianId +'.jpg'}}" class="mx-auto d-block" alt="Upload photo...">
+                <!-- Button trigger modal -->
+                <button id="edit-img" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class='far fa-edit' style='font-size:24px'></i>
+                </button>
+            </div>
+            <!-- Modal for uploading profile img-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit photo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!--     Upload form -->
+                            <form method="post" enctype="multipart/form-data" th:action="@{/master-account/{beauticianId}/uploadImage(beauticianId=${beauticianId})}">
+                                <div class="row g-3 align-items-center">
+                                    <input type="file" name="imageFile" accept="image/*" class="form-control">
+                                </div>
+                               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button id="add-img" type="submit" class="btn me-md-2">Add new photo</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="text-center">
                 <h3 th:text="${be.fullName}"></h3>
@@ -73,25 +100,25 @@
             </div>
         </div>
 
-        <!-- navigation tab-->
+        <!-- Navigation tab-->
         <div class="col-8">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="home-tab" data-bs-toggle="tab"
                             data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane">
-                        Profile
+                       View Profile
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="price-list-tab" data-bs-toggle="tab"
                             data-bs-target="#price-list-tab-pane"
-                            type="button" role="tab" aria-controls="price-list-tab-pane" aria-selected="false">Price
+                            type="button" role="tab" aria-controls="price-list-tab-pane" aria-selected="false">Edit Price
                         List
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"> Portfolio
+                            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"> Edit Portfolio
                     </button>
                 </li>
             </ul>
@@ -165,7 +192,7 @@
                 <!--  Portfolio-->
                 <div class="tab-pane" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                      tabindex="0">
-                    <!--     Upload form-->
+                  <!-- Upload form -->
                     <form method="post" enctype="multipart/form-data" th:action="@{/master-account/{beauticianId}/uploadImage(beauticianId=${beauticianId})}">
                         <div class="row g-3 align-items-center">
                             <input type="file" name="imageFile" accept="image/*" class="form-control">

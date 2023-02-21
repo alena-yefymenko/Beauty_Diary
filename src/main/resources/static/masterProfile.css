@@ -3,11 +3,12 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-h3{
-    margin-top: 20px;
+h3 {
+    margin-top: 40px;
     margin-bottom: 20px;
     font-weight: lighter;
 }
+
 .btn {
     background-color: #6d6efc;
     padding: 7px 30px;
@@ -21,13 +22,14 @@ h3{
     display: inline-block;
 }
 
-.btn:hover,#btn-file:hover {
+.btn:hover, #btn-file:hover {
     background: white;
     border: 1px solid;
     color: #712cf9;
 
 }
-#btn-file{
+
+#btn-file {
     background-color: #6d6efc;
     padding: 7px 30px;
     text-decoration: none;
@@ -43,12 +45,13 @@ h3{
     margin-top: 70px;
     margin-bottom: 70px;
 }
-.card{
+
+.card {
     background-color: white;
     box-shadow: 12px 12px 22px #dadce0;
     border-radius: 15px;
     border: solid 1px #ebebeb;
-    color: #606060 ;
+    color: #606060;
     font-family: "Roboto Light";
 }
 
@@ -62,36 +65,71 @@ h3{
     margin-bottom: 70px;
 }
 
-#avatar{
+#avatar {
     text-align: center;
     width: 230px;
     height: 230px;
     border-radius: 50%;
     object-fit: cover;
 }
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
-   color: #eb9938;}
-.nav-link{
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #eb9938;
+}
+
+.nav-link {
     color: #4f52ff;
 
 }
-.tab-content>.active {
+
+.tab-content > .active {
     margin-top: 20px;
 }
-#list{
+
+#list {
     background-color: #eb9938;
 }
-#list:hover{
+
+#list:hover {
     background: white;
     border: 1px solid;
     color: #eb9938;
 
 }
-img{
-    margin-left:15px;
+
+img {
+    margin-left: 15px;
     margin-top: 15px;
 }
-::placeholder,#capture,.form-control{
+
+::placeholder, #capture, .form-control {
     color: #606060 !important;
     font-family: "Roboto Light";
+}
+
+.avatar{
+    position: relative;
+}
+
+#edit-img {
+    padding: 5px 10px;
+    font-size: 16px;
+    font-family: "Roboto Light";
+    position: absolute;
+    bottom: 0;
+    right: 100px;
+    background: white;
+    border: 1px solid;
+    color: #eb9938;
+    color: #eb9938;
+}
+#add-img{
+    padding: 6px 15px;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+table,thead{
+    color:#5b5b5b ;
+
 }
