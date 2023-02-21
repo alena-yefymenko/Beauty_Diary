@@ -1,11 +1,6 @@
 
-.master{
-    margin-left: 100px;
-}
-#btn-modal {
-    margin-top: 15px;
-    margin-left: 100px;
-    background-color: #6d6efc;
+#btn-modal,#btn-modal-submit {
+    background-color: #eb9938;
     padding: 10px 35px;
     text-decoration: none;
     border: none;
@@ -14,7 +9,7 @@
     font-weight: normal;
     border-radius: 18px;
 }
-#btn-modal:hover{ background: white;
+#btn-modal:hover,#btn-modal-submit:hover { background: white;
     border: 1px solid;
-    color: #712cf9;
+    color: #eb9938;
 }
