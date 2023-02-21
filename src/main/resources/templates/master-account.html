@@ -12,7 +12,7 @@
         <!-- Profile photo,reservation list-->
         <div class="col-4">
             <div class="avatar">
-                <img id="avatar" th:src="@{${'/profilePictures/' + beauticianId +'.jpg'}}" class="mx-auto d-block" alt="Upload photo...">
+                <img id="avatar" th:src="@{${'/profilePictures/' + beauticianId +'.jpg'}}" class="mx-auto d-block" alt="">
                 <!-- Button trigger modal -->
                 <button id="edit-img" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class='far fa-edit' style='font-size:24px'></i>
@@ -23,7 +23,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit photo</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Edit profile photo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -193,19 +193,16 @@
                 <div class="tab-pane" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                      tabindex="0">
                   <!-- Upload form -->
-                    <form method="post" enctype="multipart/form-data" th:action="@{/master-account/{beauticianId}/uploadImage(beauticianId=${beauticianId})}">
+                    <form method="post" enctype="multipart/form-data" th:action="@{/master-account/{beauticianId}/uploadPhoto(beauticianId=${beauticianId})}">
                         <div class="row g-3 align-items-center">
-                            <input type="file" name="imageFile" accept="image/*" class="form-control">
+                            <input type="file" name="file" accept="image/*" class="form-control">
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit" class="btn me-md-2">Add new photo</button>
                         </div>
                     </form>
-                    <div class="col">
-                        <img src="/img/home_hair_salon_gallery_1.jpg" height="300px" width="400px" class="rounded float-start" alt="...">
-                        <img src="/img/home_hair_salon_gallery_2.jpg" height="300px" width="400px" class="rounded float-start" alt="...">
-                        <img src="/img/home_hair_salon_gallery_3.jpg" height="300px" width="400px" class="rounded float-start" alt="...">
-                        <img src="/img/home_hair_salon_gallery_3.jpg" height="300px" width="400px" class="rounded float-start" alt="...">
+                    <div  th:each="photo: ${photoList}" th:value="${photo.id}" class="col">
+                        <img  th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}" height="500px" width="500px" class="photo" alt="...">
                     </div>
                 </div>
             </div>

@@ -2,21 +2,19 @@ package com.example.beautydiary.controllers;
 
 import com.example.beautydiary.entities.Beautician;
 import com.example.beautydiary.entities.Category;
+import com.example.beautydiary.entities.Photo;
 import com.example.beautydiary.entities.PriceListItem;
-import com.example.beautydiary.services.BeauticianService;
-import com.example.beautydiary.services.CategoryService;
-import com.example.beautydiary.services.MasterAccountService;
-import com.example.beautydiary.services.UserService;
-import jakarta.servlet.ServletContext;
+import com.example.beautydiary.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -25,17 +23,19 @@ public class MasterAccountController {
     private CategoryService categoryService;
     private BeauticianService beauticianService;
     private UserService userService;
+    private PhotoService photoService;
 
     @Value("${profile.image.path}")
     private String profileImagePath;
 
     @Autowired
     public MasterAccountController(MasterAccountService mas, CategoryService categoryService,
-                                   BeauticianService beauticianService, UserService userService) {
+                                   BeauticianService beauticianService, UserService userService, PhotoService photoService) {
         this.mas = mas;
         this.categoryService = categoryService;
         this.beauticianService = beauticianService;
         this.userService = userService;
+        this.photoService = photoService;
     }
 
     @GetMapping("/master-account/{beauticianId}")
@@ -50,12 +50,14 @@ public class MasterAccountController {
         item.setBeautician(beautician);
         List<Category> categories = categoryService.findAllCategories();
         Category category = new Category();
+        List<Photo> photoList = photoService.findAllByBeauticianId(beauticianId);
         model.addAttribute("categories", categories);
         model.addAttribute("category", category);
         model.addAttribute("itemList", itemList);
         model.addAttribute("item", item);
         model.addAttribute("name", beautician.getFullName());
         model.addAttribute("be", beautician);
+        model.addAttribute("photoList", photoList);
         return "/master-account";
     }
 
@@ -90,6 +92,12 @@ public class MasterAccountController {
         return "redirect:/master-account/" + beauticianId;
     }
 
-
+    @PostMapping("/master-account/{beauticianId}/uploadPhoto")
+    public String uploadPhoto(@PathVariable("beauticianId") Long beauticianId,
+                              @RequestParam("file") MultipartFile file) throws IOException {
+        if(file==null || file.isEmpty())throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        photoService.savePhoto(file.getOriginalFilename(),file.getContentType(),file.getBytes(),beauticianId);
+        return "redirect:/master-account/" + beauticianId;
+    }
 }
 

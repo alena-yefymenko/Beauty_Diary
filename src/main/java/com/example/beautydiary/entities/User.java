@@ -24,8 +24,6 @@ public class User {
     private Long id;
 
 
-    @Column(name = "full_name")
-    @Size(min = 10, max = 50, message = "Full name must be between {min} and {max} characters")
     @Pattern(regexp = "^[a-zA-Z ]+$", message = "Full name must contain only letters")
     private String fullName;
 
@@ -36,8 +34,8 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @NotBlank
-    @Size(min = 8, max = 8)
+
+    @Size(min = 8, max = 8, message = "Phone number min 8 and max 8 characters long ")
     @Pattern(regexp = "\\d{8}", message = "Phone number must contain only digits")
     @Column(name = "phone_number")
     private String phoneNumber;

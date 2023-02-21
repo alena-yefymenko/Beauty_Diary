@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private BeauticianRepository beauticianRepository;
     private CustomerRepository customerRepository;
+     
 
     @Autowired
     public UserService(BeauticianRepository beauticianRepository,
