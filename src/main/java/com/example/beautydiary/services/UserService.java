@@ -5,22 +5,28 @@ import com.example.beautydiary.entities.User;
 import com.example.beautydiary.repositories.BeauticianRepository;
 import com.example.beautydiary.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
     private BeauticianRepository beauticianRepository;
     private CustomerRepository customerRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
      
 
     @Autowired
     public UserService(BeauticianRepository beauticianRepository,
-                       CustomerRepository customerRepository) {
+                       CustomerRepository customerRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.beauticianRepository = beauticianRepository;
         this.customerRepository = customerRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     public void createUser(User user) throws Exception {
+        String encryptedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
+
         if (user.getUserType().equals("beautician")) {
         beauticianRepository.save(user.getBeautician());
         } else if (user.getUserType().equals("customer"))
@@ -28,13 +34,20 @@ public class UserService {
     }
 
     public User verifyUser(User user) throws Exception {
-        User foundUser = beauticianRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        User foundUser = beauticianRepository.findByEmail(user.getEmail());
         if (foundUser == null) {
-            foundUser = customerRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+            foundUser = customerRepository.findByEmail(user.getEmail());
         }
+
         if (foundUser == null) {
-            throw new Exception("Username or password incorrect");
-        }return foundUser;
+            throw new Exception("Username incorrect");
+        }
+
+        if(!bCryptPasswordEncoder.matches(user.getPassword(), foundUser.getPassword())) {
+            throw new Exception("Password incorrect");
+        }
+
+        return foundUser;
     }
 
     public void updateBeautician(Beautician beautician) {

@@ -40,11 +40,8 @@ public class User {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Pattern(regexp = "^[a-zA-Z]{8,20}$", message = "Password should contain only latin letters and be between 8 and 20 characters long")
-    @Size(min = 8, max = 20, message = "Password should be between 8 and 20 characters long")
     @NotBlank(message = "Password is required")
     private String password;
-
 
     @CreationTimestamp
     private Timestamp createdAt;
