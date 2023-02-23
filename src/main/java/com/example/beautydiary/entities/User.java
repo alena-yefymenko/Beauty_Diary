@@ -56,6 +56,7 @@ public class User {
         beautician.setPhoneNumber(phoneNumber);
         beautician.setFullName(fullName);
         beautician.setPassword(password);
+        beautician.setUserType(userType);
         return beautician;
     }
 
@@ -65,6 +66,7 @@ public class User {
         customer.setEmail(email);
         customer.setPhoneNumber(phoneNumber);
         customer.setPassword(password);
+        customer.setUserType(userType);
         return customer;
     }
 

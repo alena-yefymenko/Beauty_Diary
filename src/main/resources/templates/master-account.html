@@ -7,6 +7,7 @@
 </head>
 <body>
 <header th:insert="~{fragments/navbar.html :: nav}"></header>
+
 <div class="container">
     <div class="row">
         <!-- Profile photo,reservation list-->
@@ -42,7 +43,7 @@
             </div>
             <div class="text-center">
                 <h3 th:text="${be.fullName}"></h3>
-                <p id="capture">Your personal account</p>
+                <p id="capture">Personal account</p>
             </div>
             <div>
                 <a id="list" type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto"
@@ -52,7 +53,7 @@
             <!-- Edit profile section-->
             <div>
                 <p>
-                    <a class="btn btn-primary d-grid gap-2 col-6 mx-auto" data-bs-toggle="collapse"
+                    <a class="btn d-grid gap-2 col-6 mx-auto" data-bs-toggle="collapse"
                        href="#collapseExample" role="button"
                        aria-expanded="false" aria-controls="collapseExample">
                         Edit profile
@@ -92,7 +93,7 @@
                         <input hidden="hidden" th:field="*{password}"/>
                         <input hidden="hidden" th:field="*{createdAt}"/>
                         <div>
-                            <button class="btn btn-primary d-grid gap-2 col-6 mx-auto">Submit</button>
+                            <button class="btn d-grid gap-2 col-6 mx-auto">Submit</button>
                         </div>
                     </form>
 
@@ -202,7 +203,7 @@
                         </div>
                     </form>
                     <div  th:each="photo: ${photoList}" th:value="${photo.id}" class="col">
-                        <img  th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}" height="500px" width="500px" class="photo" alt="...">
+                        <img  th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}" width="500px" height="500px" class="photo mx-auto d-block" alt="...">
                     </div>
                 </div>
             </div>

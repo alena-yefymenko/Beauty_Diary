@@ -1,6 +1,7 @@
 package com.example.beautydiary.services;
 
 import com.example.beautydiary.entities.Beautician;
+import com.example.beautydiary.entities.Customer;
 import com.example.beautydiary.entities.User;
 import com.example.beautydiary.repositories.BeauticianRepository;
 import com.example.beautydiary.repositories.CustomerRepository;
@@ -24,6 +25,15 @@ public class UserService {
     }
 
     public void createUser(User user) throws Exception {
+        User existing = beauticianRepository.findByEmail(user.getEmail());
+
+        if (existing == null) {
+            existing = customerRepository.findByEmail(user.getEmail());
+        }
+        if (existing != null) {
+            throw new Exception("User with email already exists.");
+        }
+
         String encryptedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
 
@@ -35,22 +45,24 @@ public class UserService {
 
     public User verifyUser(User user) throws Exception {
         User foundUser = beauticianRepository.findByEmail(user.getEmail());
+
         if (foundUser == null) {
             foundUser = customerRepository.findByEmail(user.getEmail());
         }
-
         if (foundUser == null) {
             throw new Exception("Username incorrect");
         }
-
         if(!bCryptPasswordEncoder.matches(user.getPassword(), foundUser.getPassword())) {
             throw new Exception("Password incorrect");
         }
-
         return foundUser;
     }
 
     public void updateBeautician(Beautician beautician) {
         beauticianRepository.save(beautician);
+    }
+
+    public void updateCustomer(Customer customer){
+        customerRepository.save(customer);
     }
 }

@@ -1,13 +1,11 @@
 package com.example.beautydiary.controllers;
+import com.example.beautydiary.entities.Customer;
 import com.example.beautydiary.entities.Reservation;
 import com.example.beautydiary.services.ReservationService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +17,9 @@ public class ReservationController {
     }
 
     @PostMapping(path = "/reservation")
-    public String addReservation(@ModelAttribute Reservation reservation, HttpSession session) {
+    public String addReservation(@ModelAttribute Reservation reservation, HttpSession session,@CookieValue("userId") Long customerId) {
+        reservation.setCustomer(new Customer());
+        reservation.getCustomer().setId(customerId);
         reservationService.saveReservation(reservation);
         session.setAttribute("reservation", reservation);
         return "redirect:/reservation-result";

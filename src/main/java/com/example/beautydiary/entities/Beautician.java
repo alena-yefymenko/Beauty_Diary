@@ -13,8 +13,6 @@ public class Beautician extends User {
     private String address;
     @ManyToOne
     private Category category;
-    @Column(name = "profile_picture_URL")
-    private String profilePictureURL;
     private String aboutMe;
 
 

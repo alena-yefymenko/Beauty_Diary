@@ -22,7 +22,7 @@
                 </div>
 
                 <!--Button trigger modal-->
-                <button id="btn-modal" type="button" class="btn btn-primary d-grid gap-2 col-6 mx-auto" data-bs-toggle="modal"
+                <button th:if="${loggedInUserType == 'customer'}" id="btn-modal" type="button" class="btn btn-primary d-grid gap-2 col-6 mx-auto" data-bs-toggle="modal"
                         data-bs-target="#visitModal">
                     SignUp for visit
                 </button>
@@ -41,19 +41,19 @@
                                     <div class="mb-3">
                                         <div>
                                             <lable class="form-label">Full Name</lable>
-                                            <input class="form-control" type="text" th:field="*{name}">
+                                            <input class="form-control" type="text" th:field="*{name}" required>
                                         </div>
                                         <div>
                                             <lable class="form-label">Description</lable>
-                                            <input class="form-control" type="text" th:field="*{description}">
+                                            <input class="form-control" type="text" th:field="*{description}" required>
                                         </div>
                                         <div>
                                             <lable class="form-label">Phone Number</lable>
-                                            <input class="form-control" type="text" th:field="*{phoneNumber}">
+                                            <input class="form-control" type="text" th:field="*{phoneNumber}" required>
                                         </div>
                                         <div>
                                             <lable class="form-label">Date</lable>
-                                            <input class="form-control" type="date" th:field="*{date}">
+                                            <input class="form-control" type="date" th:field="*{date}" required>
                                         </div>
                                         <div>
                                             <lable class="form-label" name=>Time</lable>
@@ -63,6 +63,7 @@
                                                 </option>
                                             </select>
                                             <input hidden="hidden" th:field="*{beautician}"/>
+
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -85,7 +86,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="home-tab" data-bs-toggle="tab"
                             data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane">
-                        View Profile
+                        Information
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -149,15 +150,9 @@
                 <!--  Portfolio-->
                 <div class="tab-pane" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                      tabindex="0">
-                    <div class="col">
-                        <img src="/img/home_hair_salon_gallery_1.jpg" height="300px" width="400px"
-                             class="rounded float-start" alt="...">
-                        <img src="/img/home_hair_salon_gallery_2.jpg" height="300px" width="400px"
-                             class="rounded float-start" alt="...">
-                        <img src="/img/home_hair_salon_gallery_3.jpg" height="300px" width="400px"
-                             class="rounded float-start" alt="...">
-                        <img src="/img/home_hair_salon_gallery_3.jpg" height="300px" width="400px"
-                             class="rounded float-start" alt="...">
+                    <div th:each="photo: ${photoList}" th:value="${photo.id}" class="col">
+                        <img th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}"
+                             height="500px" width="500px" class="photo mx-auto d-block" alt="...">
                     </div>
                 </div>
             </div>

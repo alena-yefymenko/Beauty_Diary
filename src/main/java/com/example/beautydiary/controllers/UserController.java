@@ -19,12 +19,14 @@ import java.util.Objects;
 @Controller
 public class UserController {
     private final UserService userService;
+
     @Autowired
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping("/register")
-    public String showRegistrationPage(Model model){
+    public String showRegistrationPage(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
@@ -47,35 +49,43 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginPage(
-            @RequestParam(name = "message",required = false)String message,
+            @RequestParam(name = "message", required = false) String message,
             Model model) {
         model.addAttribute("message", message);
         return "login";
     }
+
     @PostMapping("/login")
-    public String handleUserLogin(User user, HttpServletResponse response, Model model){
+    public String handleUserLogin(User user, HttpServletResponse response, Model model) {
         try {
             User loggedInUser = userService.verifyUser(user);
-            Cookie userIdCookie= new Cookie("userId",loggedInUser.getId().toString());
+            Cookie userIdCookie = new Cookie("userId", loggedInUser.getId().toString());
             userIdCookie.setPath("/");
             userIdCookie.setMaxAge(3600); // 1 hour
 
-            Cookie userIsLoggedInCookie= new Cookie("userIsLoggedIn","true");
+            Cookie userTypeCookie = new Cookie("userType", loggedInUser.getUserType());
+            userTypeCookie.setPath("/");
+            userTypeCookie.setMaxAge(3600); // 1 hour
+
+            Cookie userIsLoggedInCookie = new Cookie("userIsLoggedIn", "true");
             userIsLoggedInCookie.setPath("/");
             userIsLoggedInCookie.setMaxAge(3600); // 1 hour
 
             response.addCookie(userIdCookie);
             response.addCookie(userIsLoggedInCookie);
+            response.addCookie(userTypeCookie);
 
             model.addAttribute("user", loggedInUser);
             if (Objects.equals(loggedInUser.getUserType(), "beautician")) {
                 return "redirect:/master-account/" + loggedInUser.getId();
-            } else {
-                return "redirect:/home";
             }
-        }catch (Exception e){
-            return "redirect:login?message=login_failed&error="+ e.getMessage();
+           else if (Objects.equals(loggedInUser.getUserType(), "customer")) {
+                return "redirect:/customer-account/" + loggedInUser.getId();
+            }
+        } catch (Exception e) {
+            return "redirect:login?message=login_failed&error=" + e.getMessage();
         }
+        return "redirect:/home";
     }
 
 }

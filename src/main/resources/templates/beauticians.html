@@ -22,11 +22,8 @@
             </div>
             <div class="card-content">
                 <p th:text="${beautician.fullName}" class="name"></p>
-                <p  th:text="${beautician.getShortAboutMe()}">
-                </p>
-                <button class="btn-view">
-                    <a th:href="@{/beauticians/{id}(id=${beautician.id})}">See more</a>
-                </button>
+                <p  th:text="${beautician.getShortAboutMe()}"></p>
+                <a  type="submit" class="btn-view mt-3 mb-5" th:href="@{/beauticians/{id}(id=${beautician.id})}">See more</a>
         </div>
     </div>
 </div>

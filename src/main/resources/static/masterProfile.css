@@ -134,6 +134,8 @@ table,thead{
     color:#5b5b5b ;
 
 }
+
 .photo{
     object-fit: cover;
+    border-radius: 15px;
 }

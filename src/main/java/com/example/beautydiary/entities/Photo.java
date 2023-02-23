@@ -19,7 +19,7 @@ public class Photo {
     @Column(name = "file_name")
     private String fileName;
     @Lob
-    @Column(length = 20*1024*1024)// 20Kb
+    @Column(length = 20 * 1024 * 1024)// 20Kb
     private byte[] data;
     @Column(name = "content_type")
     private String contentType;

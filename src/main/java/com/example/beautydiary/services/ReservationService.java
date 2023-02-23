@@ -1,6 +1,7 @@
 package com.example.beautydiary.services;
 
 import com.example.beautydiary.entities.Beautician;
+import com.example.beautydiary.entities.Customer;
 import com.example.beautydiary.entities.Reservation;
 import com.example.beautydiary.repositories.ReservationRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,10 @@ public class ReservationService {
 
     public List<Reservation> getAllByBeauticianId(Long id){
         return reservationRepository.findAllByBeauticianId(id);
+    }
+
+    public List<Reservation>getAllByCustomeriId(Long id){
+        return reservationRepository.findAllByCustomerId(id);
     }
 
     public void deleteById(Long id){

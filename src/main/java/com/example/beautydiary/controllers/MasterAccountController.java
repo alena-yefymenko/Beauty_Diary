@@ -95,8 +95,8 @@ public class MasterAccountController {
     @PostMapping("/master-account/{beauticianId}/uploadPhoto")
     public String uploadPhoto(@PathVariable("beauticianId") Long beauticianId,
                               @RequestParam("file") MultipartFile file) throws IOException {
-        if(file==null || file.isEmpty())throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        photoService.savePhoto(file.getOriginalFilename(),file.getContentType(),file.getBytes(),beauticianId);
+        if (file == null || file.isEmpty()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        photoService.savePhoto(file.getOriginalFilename(), file.getContentType(), file.getBytes(), beauticianId);
         return "redirect:/master-account/" + beauticianId;
     }
 }

@@ -8,13 +8,6 @@
 
 }
 
-/*.slide-container{
-  max-width: 1120px;
-    width: 100%;
-    background-color: lightgray;
-    padding: 40px 0;
-    display: inline-flex;
-}*/
 .slide-content {
     display: inline-flex;
     margin-top: 100px;
@@ -107,6 +100,11 @@
     border-radius: 18px;
     margin-top: 25px;
     margin-bottom: 25px;
+}
+.btn-view:hover{
+    background: white;
+    border: 1px solid;
+    color: #712cf9;
 }
 
 .btn-view a {
