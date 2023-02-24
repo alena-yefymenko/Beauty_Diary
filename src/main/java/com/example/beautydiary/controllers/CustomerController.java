@@ -69,6 +69,11 @@ public class CustomerController {
         return "redirect:/customer-account/" + customerId;
     }
 
+    @GetMapping("/customer-account/{customerId}/deleteReservation/{id}")
+    public String deleteReservationById(@PathVariable("id") Long id, @PathVariable("customerId") Long customerId){
+        reservationService.deleteById(id);
+        return "redirect:/customer-account/" + customerId;
+    }
 
 }
 

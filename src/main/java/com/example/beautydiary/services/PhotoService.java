@@ -31,4 +31,8 @@ public class PhotoService {
         photo.getBeautician().setId(beauticianId);
         return photoRepository.save(photo);
     }
+
+    public void deletePhotoById(Long id){
+        photoRepository.deleteById(id);
+    }
 }

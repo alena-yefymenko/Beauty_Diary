@@ -105,5 +105,11 @@ public class MasterAccountController {
         mas.deletePriceListItemById(id);
         return "redirect:/master-account/" + beauticianId;
     }
+
+    @GetMapping("/master-account/{beauticianId}/deletePhoto/{id}")
+    public String deletePhotoItemById(@PathVariable("id") Long id, @PathVariable("beauticianId") Long beauticianId){
+        photoService.deletePhotoById(id);
+        return "redirect:/master-account/" + beauticianId;
+    }
 }
 

@@ -141,17 +141,37 @@ a.btn-delete {
 a.btn-delete:hover {
     color: #712cf9;
 }
+
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {
     float: left;
     width: 33.33%;
     padding: 5px;
+    position: relative;
 }
 
 .column img {
     width: 100%;
     object-fit: cover;
     height: 300px;
+    margin-top: 30px;
+
+}
+
+.text-block {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #eb9938;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
 }
 
 /* Clear floats after image containers */

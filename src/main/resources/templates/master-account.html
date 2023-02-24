@@ -214,10 +214,13 @@
                             <button type="submit" class="btn me-md-2">Add photo</button>
                         </div>
                     </form>
-                    <div >
+                    <div>
                         <div class="row">
                             <div class="column" th:each="photo: ${photoList}" th:value="${photo.id}">
                                 <img th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}">
+                                <div class="text-block">
+                                    <a th:href="@{/master-account/{beauticianId}/deletePhoto/{id}(id=${photo.id},beauticianId=${photo.beautician.id})}">Delete</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -225,17 +228,18 @@
             </div>
         </div>
     </div>
-    <script>
-        function activatePriceListab() {
-            console.log("activating tab");
-            var triggerEl = document.querySelector('#price-list-tab')
-            var tab = new bootstrap.Tab(triggerEl);
-            tab.show();
-        }
+</div>
+<script>
+    function activatePriceListab() {
+        console.log("activating tab");
+        var triggerEl = document.querySelector('#price-list-tab')
+        var tab = new bootstrap.Tab(triggerEl);
+        tab.show();
+    }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            activatePriceListab();
-        });
-    </script>
+    document.addEventListener("DOMContentLoaded", function () {
+        activatePriceListab();
+    });
+</script>
 </body>
 </html>

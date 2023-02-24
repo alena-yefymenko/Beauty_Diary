@@ -14,7 +14,8 @@
         <!-- Profile photo,signUp for visit form-->
         <div class="col-4">
             <div>
-                <img id="avatar" th:src="@{${'/profilePictures/' + beautician.getId() +'.jpg'}}"  class="mx-auto d-block" alt="You photo...">
+                <img id="avatar" th:src="@{${'/profilePictures/' + beautician.getId() +'.jpg'}}" class="mx-auto d-block"
+                     alt="You photo...">
             </div>
             <div>
                 <div class="text-center" th:action="@{/beautician}" th:object="${beautician}" method="get">
@@ -22,7 +23,8 @@
                 </div>
 
                 <!--Button trigger modal-->
-                <button th:if="${loggedInUserType == 'customer'}" id="btn-modal" type="button" class="btn btn-primary d-grid gap-2 col-6 mx-auto" data-bs-toggle="modal"
+                <button th:if="${loggedInUserType == 'customer'}" id="btn-modal" type="button"
+                        class="btn btn-primary d-grid gap-2 col-6 mx-auto" data-bs-toggle="modal"
                         data-bs-target="#visitModal">
                     SignUp for visit
                 </button>
@@ -67,9 +69,9 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                       <!-- <button id="btn-modal-close" type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close
-                                        </button>-->
+                                        <!-- <button id="btn-modal-close" type="button" class="btn btn-secondary"
+                                                 data-bs-dismiss="modal">Close
+                                         </button>-->
                                         <input id="btn-modal-submit" type="submit" class="btn btn-primary"/>
                                     </div>
                                 </form>
@@ -150,27 +152,28 @@
                 <!--  Portfolio-->
                 <div class="tab-pane" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                      tabindex="0">
-                    <div th:each="photo: ${photoList}" th:value="${photo.id}" class="col">
-                        <img th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}"
-                             height="500px" width="500px" class="photo mx-auto d-block" alt="...">
+                    <div class="row">
+                        <div class="column" th:each="photo: ${photoList}" th:value="${photo.id}">
+                            <img th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<script>
+    function activatePriceListab() {
+        console.log("activating tab");
+        var triggerEl = document.querySelector('#price-list-tab')
+        var tab = new bootstrap.Tab(triggerEl);
+        tab.show();
+    }
 
-    <script>
-        function activatePriceListab() {
-            console.log("activating tab");
-            var triggerEl = document.querySelector('#price-list-tab')
-            var tab = new bootstrap.Tab(triggerEl);
-            tab.show();
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            activatePriceListab();
-        });
-    </script>
+    document.addEventListener("DOMContentLoaded", function () {
+        activatePriceListab();
+    });
+</script>
 </body>
 
 </html>
