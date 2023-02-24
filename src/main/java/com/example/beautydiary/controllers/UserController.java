@@ -1,7 +1,10 @@
 package com.example.beautydiary.controllers;
 
 
+import com.example.beautydiary.entities.Beautician;
 import com.example.beautydiary.entities.User;
+import com.example.beautydiary.services.BeauticianService;
+import com.example.beautydiary.services.CustomerService;
 import com.example.beautydiary.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,19 +13,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
 @Controller
 public class UserController {
     private final UserService userService;
+    private final BeauticianService beauticianService;
+    private final CustomerService customerService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, BeauticianService beauticianService, CustomerService customerService) {
         this.userService = userService;
+        this.beauticianService = beauticianService;
+        this.customerService = customerService;
     }
 
     @GetMapping("/register")
@@ -86,6 +91,33 @@ public class UserController {
             return "redirect:login?message=login_failed&error=" + e.getMessage();
         }
         return "redirect:/home";
+    }
+    @GetMapping("/logout")
+    public String logout(HttpServletResponse response) {
+        Cookie userIdCookie = new Cookie("userId", "");
+        userIdCookie.setPath("/");
+        userIdCookie.setMaxAge(0);
+
+        Cookie userIsLoggedInCookie = new Cookie("userIsLoggedIn", "false");
+        userIsLoggedInCookie.setPath("/");
+        userIsLoggedInCookie.setMaxAge(0);
+
+        response.addCookie(userIdCookie);
+        response.addCookie(userIsLoggedInCookie);
+
+        return "redirect:/home?message=logout_success";
+    }
+
+    @GetMapping("/my-account")
+    public String showMyAccountNav(@CookieValue("userType") String loggedInUserType,
+                                   @CookieValue("userId") Long userId, Model model){
+        model.addAttribute("loggedInUserType",loggedInUserType);
+        if(loggedInUserType.equals("beautician")){
+            return "redirect:/master-account/"+ userId;
+        } else if (loggedInUserType.equals("customer")) {
+            return "redirect:/customer-account/" + userId;
+        }
+       return "/home";
     }
 
 }

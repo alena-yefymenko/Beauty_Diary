@@ -23,7 +23,8 @@ public class BeauticianController {
 
 
 
-    public BeauticianController(BeauticianService beauticianService, MasterAccountService mas, PhotoService photoService, CustomerService customerService) {
+    public BeauticianController(BeauticianService beauticianService, MasterAccountService mas,
+                                PhotoService photoService, CustomerService customerService) {
         this.beauticianService = beauticianService;
         this.mas = mas;
         this.photoService = photoService;
@@ -37,7 +38,8 @@ public class BeauticianController {
     }
 
     @GetMapping("/beauticians/{id}")
-    public String viewBeauticianProfile(@PathVariable("id") Long id, Model model, @CookieValue("userType") String loggedInUserType) {
+    public String viewBeauticianProfile(@PathVariable("id") Long id, Model model,
+                                        @CookieValue("userType") String loggedInUserType) {
         Beautician beautician = beauticianService.getById(id);
         model.addAttribute("beautician", beautician);
         var reservation = new Reservation();

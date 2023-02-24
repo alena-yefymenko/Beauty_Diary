@@ -17,7 +17,8 @@ public class ReservationController {
     }
 
     @PostMapping(path = "/reservation")
-    public String addReservation(@ModelAttribute Reservation reservation, HttpSession session,@CookieValue("userId") Long customerId) {
+    public String addReservation(@ModelAttribute Reservation reservation, HttpSession session,
+                                 @CookieValue("userId") Long customerId) {
         reservation.setCustomer(new Customer());
         reservation.getCustomer().setId(customerId);
         reservationService.saveReservation(reservation);

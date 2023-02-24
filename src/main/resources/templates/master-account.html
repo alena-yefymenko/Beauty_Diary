@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="/masterProfile.css">
 </head>
 <body>
-<header th:insert="~{fragments/navbar.html :: nav}"></header>
+<!--<header th:insert="~{fragments/navbar.html :: nav}"></header>-->
+<header th:insert="~{fragments/navLoged.html :: navLoged}"></header>
 
 <div class="container">
     <div class="row">
@@ -42,7 +43,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <h3 th:text="${be.fullName}"></h3>
+                <h3 th:text="${be.getFullName()}"></h3>
                 <p id="capture">Personal account</p>
             </div>
             <div>
