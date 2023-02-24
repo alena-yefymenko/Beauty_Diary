@@ -40,7 +40,7 @@ public class CustomerController {
         }
         Customer customer = customerService.getById(customerId);
         model.addAttribute("customer", customer);
-        List<Reservation> reservationList = reservationService.getAllByCustomeriId(customerId);
+        List<Reservation> reservationList = reservationService.getAllByCustomerId(customerId);
         model.addAttribute("reservationList", reservationList);
         return "/customer-account";
     }

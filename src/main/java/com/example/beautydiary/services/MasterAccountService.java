@@ -25,6 +25,10 @@ public class MasterAccountService {
         return masterAccountRepository.save(priceListItem);
     }
 
+    public void deletePriceListItemById(Long id){
+        masterAccountRepository.deleteById(id);
+    }
+
     public List<PriceListItem> getAllByBeauticianId(Long id) {
         return masterAccountRepository.findAllByBeauticianId(id);
     }

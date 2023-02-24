@@ -14,14 +14,16 @@
         <!-- Profile photo,reservation list-->
         <div class="col-4">
             <div class="avatar">
-                <img id="avatar" th:src="@{${'/profilePictures/' + beauticianId +'.jpg'}}" class="mx-auto d-block" alt="">
+                <img id="avatar" th:src="@{${'/profilePictures/' + beauticianId +'.jpg'}}" class="mx-auto d-block"
+                     alt="">
                 <!-- Button trigger modal -->
-                <button id="edit-img" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button id="edit-img" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class='far fa-edit' style='font-size:24px'></i>
                 </button>
             </div>
             <!-- Modal for uploading profile img-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -30,12 +32,13 @@
                         </div>
                         <div class="modal-body">
                             <!--     Upload form -->
-                            <form method="post" enctype="multipart/form-data" th:action="@{/master-account/{beauticianId}/uploadImage(beauticianId=${beauticianId})}">
+                            <form method="post" enctype="multipart/form-data"
+                                  th:action="@{/master-account/{beauticianId}/uploadImage(beauticianId=${beauticianId})}">
                                 <div class="row g-3 align-items-center">
                                     <input type="file" name="imageFile" accept="image/*" class="form-control">
                                 </div>
-                               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button id="add-img" type="submit" class="btn me-md-2">Add new photo</button>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button id="add-img" type="submit" class="btn me-md-2">Add photo</button>
                                 </div>
                             </form>
                         </div>
@@ -108,19 +111,21 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="home-tab" data-bs-toggle="tab"
                             data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane">
-                       View Profile
+                        View Profile
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="price-list-tab" data-bs-toggle="tab"
                             data-bs-target="#price-list-tab-pane"
-                            type="button" role="tab" aria-controls="price-list-tab-pane" aria-selected="false">Edit Price
+                            type="button" role="tab" aria-controls="price-list-tab-pane" aria-selected="false">Edit
+                        Price
                         List
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"> Edit Portfolio
+                            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"> Edit
+                        Portfolio
                     </button>
                 </li>
             </ul>
@@ -171,7 +176,7 @@
                             <input hidden="hidden" th:field="*{beautician}"/>
                         </div>
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary">Add new</button>
+                            <button type="submit" class="btn">Add new</button>
                         </div>
                     </form>
                     <table class="table">
@@ -180,6 +185,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Service name</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -187,6 +193,10 @@
                             <td th:text="${it.index + 1}"></td>
                             <td th:text="${item.name}"></td>
                             <td th:text="${item.price}"></td>
+                            <td>
+                                <a th:href="@{/master-account/{beauticianId}/deletePriceListItem/{id}(id=${item.id},beauticianId=${item.beautician.id})}"
+                                   type="submit" class="btn-delete">Delete</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -194,34 +204,38 @@
                 <!--  Portfolio-->
                 <div class="tab-pane" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                      tabindex="0">
-                  <!-- Upload form -->
-                    <form method="post" enctype="multipart/form-data" th:action="@{/master-account/{beauticianId}/uploadPhoto(beauticianId=${beauticianId})}">
+                    <!-- Upload form -->
+                    <form method="post" enctype="multipart/form-data"
+                          th:action="@{/master-account/{beauticianId}/uploadPhoto(beauticianId=${beauticianId})}">
                         <div class="row g-3 align-items-center">
                             <input type="file" name="file" accept="image/*" class="form-control">
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn me-md-2">Add new photo</button>
+                            <button type="submit" class="btn me-md-2">Add photo</button>
                         </div>
                     </form>
-                    <div  th:each="photo: ${photoList}" th:value="${photo.id}" class="col">
-                        <img  th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}" width="500px" height="500px" class="photo mx-auto d-block" alt="...">
+                    <div >
+                        <div class="row">
+                            <div class="column" th:each="photo: ${photoList}" th:value="${photo.id}">
+                                <img th:src="@{${'data:image/jpeg;base64,' + photo.getBase64Data()}}">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    function activatePriceListab() {
-        console.log("activating tab");
-        var triggerEl = document.querySelector('#price-list-tab')
-        var tab = new bootstrap.Tab(triggerEl);
-        tab.show();
-    }
+    <script>
+        function activatePriceListab() {
+            console.log("activating tab");
+            var triggerEl = document.querySelector('#price-list-tab')
+            var tab = new bootstrap.Tab(triggerEl);
+            tab.show();
+        }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        activatePriceListab();
-    });
-</script>
+        document.addEventListener("DOMContentLoaded", function () {
+            activatePriceListab();
+        });
+    </script>
 </body>
 </html>

@@ -99,5 +99,11 @@ public class MasterAccountController {
         photoService.savePhoto(file.getOriginalFilename(), file.getContentType(), file.getBytes(), beauticianId);
         return "redirect:/master-account/" + beauticianId;
     }
+
+    @GetMapping("/master-account/{beauticianId}/deletePriceListItem/{id}")
+    public String deletePriceListItemById(@PathVariable("id") Long id, @PathVariable("beauticianId") Long beauticianId){
+        mas.deletePriceListItemById(id);
+        return "redirect:/master-account/" + beauticianId;
+    }
 }
 
